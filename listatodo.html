@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            background-image: linear-gradient(to right top, #051937, #222b6a, #583799, #9d36bf, #eb12d8);
+        }
+        .card{
+
+            width:400px;
+            height: 100vh;
+            border-radius: 10px;
+            background-color: #111;
+            background-image: linear-gradient(to right top, #051937, #0d1a3a, #151b3c, #1c1c3f, #231d41);
+        }
+        .title{
+            color: #fff;
+            display: flex;
+            justify-content: center;
+        }
+        .tarefa{
+            background-color: #fff;
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px;
+        }
+        .criadortarefa{
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+        }
+        #novatarefa{
+            padding: 10px;
+            border: none;
+            border-radius: 10px 0 0 10px;
+        }
+        #confirmatarefa{
+            background-color: dodgerblue;
+            border: none;
+            border-radius: 0 10px 10px 0;
+        }
+    </style>
+
+    <script>
+        function Add(){
+            let span = document.createElement("span")
+            let SelecionaInput = document.getElementById('novatarefa')
+            let inputvalue = SelecionaInput.value
+            span.innerHTML = (inputvalue)
+            let elementoPai = document.getElementById("todo")
+            span.classList.add('tarefa')
+            elementoPai.appendChild(span)
+
+            let check = document.createElement("input")
+            check.type = "checkbox"
+            check.style.float = "right"
+            span.appendChild(check)
+
+            // se estiver uma tarefa vazia, ele não deixa criar a tarefa
+            inputvalue === "" ? elementoPai.removeChild(span) : elementoPai.appendChild(span)
+
+            // remove a tarefa depois de 2 segundos
+            // check.onclick = setTimeout(function(e){ elementoPai.removeChild(span)}, 2000);
+            check.onclick = _ => elementoPai.removeChild(span)
+        }   
+        
+    </script>
+   
+  </head>
+  <body>
+    <div class="card">
+
+        <div class="title"><h1>Lista de tarefas</h1></div>
+
+        <div class="criadortarefa">
+            <input placeholder="Crie uma tarefa nova" id="novatarefa">
+            <button id="confirmatarefa" onclick="Add()">Confirmar</button>
+        </div>
+
+        <div id="todo">
+            <!-- <span class="tarefa" id="um">Fazer exercicio de casa <input type="checkbox" style="float:right"></span> -->
+        </div>
+
+    </div>
+  </body>
+</html>
